@@ -1,4 +1,4 @@
-console.log("messages channel", App.cable)
+console.log("setting up messages channel", App.cable)
 App.messages = App.cable.subscriptions.create "MessagesChannel",
   connected: ->
     console.log("connected")
@@ -10,10 +10,8 @@ App.messages = App.cable.subscriptions.create "MessagesChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    console.log("data received": data)
-    alert("hey received")
+    console.log("data received": data.message)
+    $(".messages").append(data.message)
 
-  speak: (data) ->
-    @perform 'speak', message: msg
-
-
+  test: (data) ->
+    @perform 'test', message: data
