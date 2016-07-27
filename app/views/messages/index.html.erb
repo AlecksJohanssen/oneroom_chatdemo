@@ -1,0 +1,10 @@
+<h1>One Room Chat</h1>
+
+<div class="messages">
+  <%= render @messages %>
+</div>
+
+<%= form_for Message.new do |f| %>
+  <%= f.text_field :content, required: true %>
+  <%= f.submit "Send" %>
+<% end %>
