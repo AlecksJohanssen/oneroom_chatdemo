@@ -7,7 +7,10 @@ class MessagesController < ApplicationController
     @message = Message.new message_params
     @message.ip = request.remote_ip
     @message.save!
-    redirect_to root_path
+    ActionCable.server.broadcast 'messages',
+      message: @message.content,
+      ip: @message.ip
+    head :ok
   end
 
   private
