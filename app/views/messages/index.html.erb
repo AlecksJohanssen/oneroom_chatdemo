@@ -5,6 +5,8 @@
 </div>
 
 <%= form_for Message.new, remote: true do |f| %>
-  <%= f.text_field :content, required: true %>
-  <%= f.submit "Send" %>
+  <div class="form-inline">
+    <%= f.text_field :content, required: true, class: 'form-control' %>
+    <%= f.submit "Send", class: 'btn btn-secondary' %>
+  </div>
 <% end %>
