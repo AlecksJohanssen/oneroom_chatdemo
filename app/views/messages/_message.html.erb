@@ -1,7 +1,7 @@
 <div class="message" id="<%= dom_id message %>">
   <div class="card">
     <div class="card-block">
-      <%= link_to "&times".html_safe, message, method: 'delete', class: 'close' %>
+      <%= link_to "&times".html_safe, '#', class: 'close', data: {id: message.id} %>
       <strong><%= message.ip %></strong>: <%= message.content %>
     </div>
   </div>

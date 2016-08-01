@@ -5,10 +5,5 @@
     <%= render @messages %>
   </div>
 
-  <%= form_for Message.new, remote: true do |f| %>
-    <div class="form-inline">
-      <%= f.text_field :content, required: true, class: 'form-control' %>
-      <%= f.submit "Send", class: 'btn btn-secondary' %>
-    </div>
-  <% end %>
+    <%= text_field_tag :content, nil, required: true, class: 'form-control form-block', placeholder: "Type a message..." %>
 </div>

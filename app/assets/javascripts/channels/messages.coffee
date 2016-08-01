@@ -17,3 +17,11 @@ App.messages = App.cable.subscriptions.create "MessagesChannel",
 
   test: (data) ->
     @perform 'test', message: data
+
+  create: (data) ->
+    console.log("submitting data App.messages.create", data)
+    @perform 'create', message: data
+
+  destroy: (data) ->
+    console.log("destroying ", data)
+    @perform 'destroy', id: data
