@@ -7,7 +7,14 @@ class MessagesController < ApplicationController
     @message = Message.new message_params
     @message.ip = request.remote_ip
     @message.save!
-    ActionCable.server.broadcast 'messages', message: render_message(@message)
+    ActionCable.server.broadcast 'messages', action: 'append', data: render_message(@message)
+    redirect_to messages_path
+  end
+
+  def destroy
+    @message = Message.find params[:id]
+    @message.destroy
+    ActionCable.server.broadcast 'messages', action: 'remove', data: "#message_#{@message.id}"
     redirect_to messages_path
   end
 
