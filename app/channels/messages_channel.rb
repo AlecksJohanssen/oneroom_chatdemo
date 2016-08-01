@@ -13,12 +13,11 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def create(data)
-    message = Message.create(content: data["message"])
+    message = Message.create(content: data["message"], ip: current_ip)
     ActionCable.server.broadcast('messages', action: 'append', data: render_message(message))
   end
 
   def destroy(data)
-    Rails.logger.info "data: #{data}"
     message = Message.find(data["id"]).destroy
     ActionCable.server.broadcast 'messages', action: 'remove', data: "#message_#{message.id}"
   end
