@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require messages
 //= require cable
+//= require setup
