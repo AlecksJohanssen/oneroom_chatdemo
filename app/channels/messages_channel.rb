@@ -14,7 +14,7 @@ class MessagesChannel < ApplicationCable::Channel
 
   def create(params)
     message = Message.create content: params["content"], ip: current_ip
-    ActionCable.server.broadcast 'messages', action: 'append', data: render_message(message)
+    CreateMessageBroadcastJob.perform_later 'messages', action: 'append', data: render_message(message)
   end
 
   def destroy(params)
